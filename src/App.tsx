@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Code,
   Mail,
@@ -19,7 +19,7 @@ import {
 import { ThemeToggle } from "./components/ThemeToggle";
 import { Section } from "./components/Section";
 import { ProjectCard } from "./components/ProjectCard";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
@@ -42,7 +42,7 @@ function App() {
         "A full-stack e-commerce platform with React, Node.js, and PostgresSQL",
       image:
         "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1600",
-      technologies: ["React", "Node.js",  "Redux"],
+      technologies: ["React", "Node.js", "Redux"],
       githubUrl: "#",
       liveUrl: "#",
     },
@@ -58,7 +58,8 @@ function App() {
     },
     {
       title: "Youtube Clone",
-      description: "A YouTube clone using RapidAPI lets users search and watch videos .",
+      description:
+        "A YouTube clone using RapidAPI lets users search and watch videos .",
       image:
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600",
       technologies: ["TypeScript", "React", "Material UI"],
@@ -100,37 +101,42 @@ function App() {
   //   },
   // ];
 
-  const[name,setName]=useState("")
-  const[email,setEmail]=useState("")
-  const[message,setMessage]=useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit=(e:any)=>{
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-     
+
+    if (!name || !email || !message) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
+
     const serviceId = "service_x87mxmp";
     const templateId = "template_oaiwm38";
     const publicKey = "g01Q3L_8uBOPvSZnr";
 
-    const templateParams ={
-      from_name:name,
-      from_email:email,
-      to_name:"Vishnu",
-      from_message:message,
-
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      to_name: "Vishnu",
+      from_message: message,
     };
-    emailjs.send(serviceId,templateId,templateParams,publicKey)
-    .then((response:any)=>{
-      console.log("Email sent Successfully",response)
-         toast.success("Email sent successfully!");
-      setName("")
-      setEmail("")
-      setMessage("")
-    })
-    .catch((error:any)=>{
-      console.log("Error on the Sending Email",error)
+    emailjs
+      .send(serviceId, templateId, templateParams, publicKey)
+      .then((response: any) => {
+        console.log("Email sent Successfully", response);
+        toast.success("Email sent successfully!");
+        setName("");
+        setEmail("");
+        setMessage("");
+      })
+      .catch((error: any) => {
+        console.log("Error on the Sending Email", error);
         toast.error("Failed to send email. Please try again.");
-    })
-  }
+      });
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300">
       <ThemeToggle isDark={isDark} toggleTheme={() => setIsDark(!isDark)} />
@@ -141,39 +147,42 @@ function App() {
           <div className="mb-6 inline-block p-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full text-white transform hover:scale-110 transition-transform duration-300">
             <Code className="w-8 h-8" />
           </div>
-          <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
-         Vishnupriyan Venkatesan
+          <h1 className="text-5xl font-bold mb-6 pb-4 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+            Vishnupriyan Venkatesan
           </h1>
-          <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+          <h2 className="text-5xl font-bold mb-6 pb-4 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
             Web Developer
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
             I build exceptional and scalable web applications with modern
             technologies
           </p>
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
             <a
-              href="#contact"
-              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center gap-2 transform hover:scale-105"
+              href="/Vishnupriyan_WebDeveloper_Resume.pdf"
+              download
+              className="px-6 py-3 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-lg hover:from-indigo-600 hover:to-violet-600 transition-all duration-300 flex items-center gap-2 transform hover:scale-105 w-full sm:w-auto text-center"
             >
-              <Mail className="w-5 h-5" />
-              Contact Me
+              <FileSignature className="w-5 h-5" />
+              Resume
             </a>
             <a
               href="#projects"
-              className="px-6 py-3 bg-white dark:bg-slate-800 text-gray-800 dark:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700 transition-all duration-300 flex items-center gap-2 transform hover:scale-105 shadow-lg"
+              className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg hover:from-green-600 hover:to-emerald-600 transition-all duration-300 flex items-center gap-2 transform hover:scale-105 w-full sm:w-auto text-center"
             >
               <Briefcase className="w-5 h-5" />
               View Projects
             </a>
+
             <a
-              href="/Vishnupriyan_WebDeveloper_Resume.pdf" // replace with actual path like "/assets/Vishnu-Venkatesan-Resume.pdf"
-              download
-              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center gap-2 transform hover:scale-105"
+              href="#contact"
+              className="px-6 py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white rounded-lg hover:from-rose-600 hover:to-pink-600 transition-all duration-300 flex items-center gap-2 transform hover:scale-105 w-full sm:w-auto text-center"
             >
-              <FileSignature className="w-5 h-5" />  Resume{" "}
+              <Mail className="w-5 h-5" />
+              Contact Me
             </a>
           </div>
+
           <div className="mt-12 flex justify-center gap-6">
             <a
               href="https://github.com/VishnuVenkatDS/"
@@ -357,7 +366,10 @@ function App() {
       {/* Contact Section */}
       <Section id="contact" title="Get in Touch">
         <div className="max-w-2xl mx-auto px-4">
-          <form onSubmit={handleSubmit} className="space-y-6 bg-white dark:bg-slate-800 rounded-xl p-8 shadow-lg">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6 bg-white dark:bg-slate-800 rounded-xl p-8 shadow-lg"
+          >
             <div>
               <label
                 htmlFor="name"
@@ -368,7 +380,7 @@ function App() {
               <input
                 type="text"
                 id="name"
-               onChange={(e)=>setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 className="w-full px-4 py-2 rounded-lg border dark:border-slate-600 dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all"
               />
             </div>
@@ -382,7 +394,7 @@ function App() {
               <input
                 type="email"
                 id="email"
-                onChange={(e)=>setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2 rounded-lg border dark:border-slate-600 dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all"
               />
             </div>
@@ -396,7 +408,7 @@ function App() {
               <textarea
                 id="message"
                 rows={4}
-                onChange={(e)=>setMessage(e.target.value)}
+                onChange={(e) => setMessage(e.target.value)}
                 className="w-full px-4 py-2 rounded-lg border dark:border-slate-600 dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all"
               ></textarea>
             </div>
@@ -410,7 +422,7 @@ function App() {
           </form>
         </div>
       </Section>
-        <ToastContainer position="top-right" autoClose={3000} />
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 }
