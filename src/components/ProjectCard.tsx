@@ -1,5 +1,5 @@
-import React from 'react';
-import { ExternalLink, Github } from 'lucide-react';
+// import React from 'react';
+// import { ExternalLink, Github } from 'lucide-react';
 
 interface ProjectCardProps {
   title: string;
@@ -15,8 +15,8 @@ export function ProjectCard({
   description,
   image,
   technologies,
-  githubUrl,
-  liveUrl,
+  // githubUrl,
+  // liveUrl,
 }: ProjectCardProps) {
   return (
     <div className="group relative overflow-hidden rounded-xl bg-white dark:bg-slate-800 shadow-lg transition-all duration-300 hover:-translate-y-2">
@@ -40,7 +40,7 @@ export function ProjectCard({
             </span>
           ))}
         </div>
-        <div className="flex gap-4">
+        {/* <div className="flex gap-4">
           <a
             href={githubUrl}
             target="_blank"
@@ -59,7 +59,7 @@ export function ProjectCard({
             <ExternalLink className="w-5 h-5" />
             Live Demo
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );
