@@ -248,7 +248,7 @@ function App() {
               </div>
             </div>
             <div className="flex-1">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-3 gap-4">
                 {[
                   "React",
                   "Node.js",
@@ -258,7 +258,7 @@ function App() {
                   "Redux",
                   "RTK Query",
                   "Material UI",
-                  "Git & GitHub",
+                  // "Git & GitHub",
                   "PWA",
                 ].map((skill) => (
                   <div
